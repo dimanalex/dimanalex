@@ -1,5 +1,6 @@
 import datetime as dt
 
+
 class Record:
     def __init__(self, amount, comment, date=None):
         self.amount = amount
@@ -9,6 +10,7 @@ class Record:
             self.date = dt.datetime.date(dt.datetime.now())
         else:
             self.date = dt.datetime.strptime(date, '%d.%m.%Y').date()
+
 
 class Calculator:
     def __init__(self, limit):
@@ -45,10 +47,12 @@ class Calculator:
     def get_current_value(self):
         return self.limit - self.get_today_stats()
 
+
 class CashCalculator(Calculator):
     USD_RATE: float = 72.0
-    EURO_RATE: float= 87.0
-    def __init__(self,limit):
+    EURO_RATE: float = 87.0
+
+    def __init__(self, limit):
         super().__init__(limit)
     def get_today_cash_remained(self, currency='руб'):
         cur_dict = {'eur': ('Euro', self.EURO_RATE),
@@ -64,6 +68,7 @@ class CashCalculator(Calculator):
         else:
             cash_rem = abs(cur_cash)
             return (f'Денег нет, держись: твой долг - {cash_rem} {sel_cur}')
+
 
 class CaloriesCalculator(Calculator):
     def get_calories_remained(self):
