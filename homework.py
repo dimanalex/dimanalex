@@ -6,7 +6,7 @@ class Record:
         self.amount = amount
         self.date = date
         self.comment = comment
-        if date is None:
+        if date == None:
             self.date = dt.datetime.date(dt.datetime.now())
         else:
             self.date = dt.datetime.strptime(date, '%d.%m.%Y').date()
